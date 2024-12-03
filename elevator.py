@@ -97,3 +97,26 @@ class ElevatorController:
         # Display the status of all elevators
         for elevator in self.elevators:
             print(elevator)  # Print the string representation of each elevator
+
+if __name__ == "__main__":
+    # Create an ElevatorController with 3 elevators, each with a capacity of 10
+    controller = ElevatorController(num_elevators=3, capacity=10)
+
+    # Add some requests to the system
+    controller.add_request(0, 5)  # Request from floor 0 to floor 5
+    controller.add_request(6, 1)  # Request from floor 6 to floor 1
+    controller.add_request(3, 10)  # Request from floor 3 to floor 10
+
+    # Run the simulation for 15 steps
+    for _ in range(15):
+        controller.step()  # Process a step in the simulation
+        controller.display_status()  # Show the status of the elevators
+        print("---")  # Separate each step for clarity
+
+
+# The implementation has a couple of problems:
+# • Has to run a while loop through floors and check each for pending requests (could be problematic depending on how far floors are from one another)
+# Would be better if we could just see all requests in a certain direction from a given floor
+# • E.g. if moving up from 20th floor and see requests in UP direction from 30th and 40th floors, we know we will pick them up
+# • Depending on implementation of dispatch scheduler, could lead to starvation
+# • What if "next" request to handle is always the closest one? We may just stay at the top of the building and never handle requests from the lobby 
