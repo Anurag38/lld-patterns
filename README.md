@@ -14,10 +14,3 @@ Common LLD interview questions implemented with clean architecture and design pa
 - Cache System
 - Logger System
 
-## Structure
-Each system has:
-- Core domain models
-- Design patterns used
-- Class diagrams
-- Unit tests
-- Sample usage 
